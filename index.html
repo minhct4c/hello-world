@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background-color: #f0f0f0;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>This URL only opened at 1/8/2025</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // 🕒 Set your target date and time here:
+    const targetDate = new Date("2025-08-01T09:00:00"); // ← Change this!
+    const redirectUrl = "https://m.me/cm/AbYUDqZLsShy2Qfq/?send_source=cm%3Acopy_invite_link"; // ← Change this!
+
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        window.location.href = redirectUrl;
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      setTimeout(updateCountdown, 1000);
+    }
+
+    updateCountdown();
+  </script>
+</body>
+</html>
